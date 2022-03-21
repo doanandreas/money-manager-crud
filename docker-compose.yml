@@ -1,0 +1,18 @@
+version: '3'
+services:
+  postgres:
+    image: "postgres:latest"
+    environment:
+      - POSTGRES_PASSWORD=postgres_password
+  api:
+    build: .
+    volumes:
+      - ./uploads:/app/uploads
+    ports:
+      - 8000:8000
+    environment:
+      - PGUSER=postgres
+      - PGHOST=postgres
+      - PGDATABASE=postgres
+      - PGPASSWORD=postgres_password
+      - PGPORT=5432
